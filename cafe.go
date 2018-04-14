@@ -41,7 +41,14 @@ func dbMiddleware(h echo.HandlerFunc) echo.HandlerFunc {
 func main() {
 	e := echo.New()
 	e.GET("/", handler.RootHandler)
-	e.Start(":6000")
+
+	renderer := &TemplateRenderer{
+		templates: template.Must(template.ParseGlob("./view/build/*.html")),
+	}
+	e.Renderer = renderer
+	e.Static("/static", "view/build/static")
+	e.Static("/", "view/build")
+
 
 	e.Use(dbMiddleware)
 	e.Use(middleware.Logger())
@@ -49,8 +56,10 @@ func main() {
 		Level: 5,
 	}))
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://localhost:3000", "https://labstack.net"},
+		AllowOrigins: []string{"http://localhost:3000"},
 		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
 	}))
+
+	e.Start(":6000")
 
 }
