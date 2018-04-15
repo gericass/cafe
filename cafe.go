@@ -5,8 +5,9 @@ import (
 	"github.com/gericass/cafe/handler"
 	"github.com/labstack/echo/middleware"
 	"io"
-	"github.com/gericass/portfolio/db"
+
 	"html/template"
+	"github.com/gericass/cafe/db"
 )
 
 // TemplateRenderer is a custom html/template renderer for Echo framework
