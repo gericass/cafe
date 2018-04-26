@@ -38,11 +38,8 @@ func dbMiddleware(h echo.HandlerFunc) echo.HandlerFunc {
 	}
 }
 
-
 func main() {
 	e := echo.New()
-	e.GET("/", handler.RootHandler)
-
 	renderer := &TemplateRenderer{
 		templates: template.Must(template.ParseGlob("./view/build/*.html")),
 	}
@@ -50,6 +47,7 @@ func main() {
 	e.Static("/static", "view/build/static")
 	e.Static("/", "view/build")
 
+	e.GET("/", handler.RootHandler)
 
 	e.Use(dbMiddleware)
 	e.Use(middleware.Logger())
