@@ -48,6 +48,7 @@ func main() {
 	e.Static("/", "view/build")
 
 	e.GET("/", handler.RootHandler)
+	e.POST("/login", handler.LoginHandler)
 
 	e.Use(dbMiddleware)
 	e.Use(middleware.Logger())

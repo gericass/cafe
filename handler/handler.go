@@ -8,3 +8,7 @@ import (
 func RootHandler(c echo.Context) error {
 	return c.Render(http.StatusOK, "index.html", "")
 }
+
+func LoginHandler(c echo.Context) error {
+	return nil
+}

@@ -1,11 +1,34 @@
+import * as History from 'history';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { Provider } from 'react-redux';
+import { Route, Router, Switch } from 'react-router';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { HOME_PATH, LOGIN_PATH } from './constants/Paths';
+import Home from './home/Home';
+import Login from './login/Login';
 import registerServiceWorker from './registerServiceWorker';
 
+const history = History.createHashHistory();
+const middleware = [applyMiddleware(routerMiddleware(history))];
+
+const store = createStore(
+  combineReducers({
+    router: routerReducer,
+  }),
+  ...middleware
+);
+
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <Router history={history}>
+      <Switch>
+        <Route exact={true} path={HOME_PATH} component={Home}/>
+        <Route exact={true} path={LOGIN_PATH} component={Login}/>
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

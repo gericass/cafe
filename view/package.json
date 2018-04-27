@@ -6,10 +6,11 @@
     "@types/material-ui": "^0.21.2",
     "@types/react-redux": "^5.0.18",
     "@types/react-router-redux": "^5.0.13",
-    "material-ui": "^0.20.0",
+    "history": "^4.7.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
     "react-router-redux": "^4.0.8",
     "react-scripts-ts": "2.15.1",
     "redux": "^4.0.0"
