@@ -12,3 +12,7 @@ func RootHandler(c echo.Context) error {
 func LoginHandler(c echo.Context) error {
 	return nil
 }
+
+func PopularCafeHandler(c echo.Context) error {
+	return nil
+}
