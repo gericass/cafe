@@ -1,37 +1,37 @@
 import * as React from 'react';
 import { Requests } from '../../dao/Requests';
 import { Cafe } from '../../models/Cafe';
-import PopularCafeContent from './PopularCafeContent';
+import PopularCafeList from './PopularCafeList';
+import { push, RouterAction } from 'react-router-redux';
+import { connect, Dispatch } from 'react-redux';
 
-class PopularCafe extends React.Component {
+interface PopularCafeProps {
+  push: (path: string) => RouterAction;
+}
 
-  cafeContents: PopularCafeContent[];
+class PopularCafe extends React.Component<PopularCafeProps, {}> {
 
-  setContent = (cafes: Cafe[]) => {
-    this.cafeContents = {};
-    cafes.forEach((cafe) => {
-      this.cafeContents.push(
-        <PopularCafeContent cafeInfo={cafe}/>
-      )
-    })
-  };
+  cafes: Cafe[];
 
   componentWillMount() {
-    const cafes: Cafe[] = Requests.getPopularCafe();
-    this.setContent(cafes)
+    this.cafes = Requests.getPopularCafe();
   };
 
   public render() {
     return (
       <div className='popularCafe'>
         <h2 className='popularCafeTitle'>
-          <ul className='popularCafeList'>
-            {this.cafeContents}
-          </ul>
+          <PopularCafeList cafeInfo={this.cafes}/>
         </h2>
       </div>
     );
   }
 }
 
-export default PopularCafe;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    push: (path: string) => dispatch(push(path)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(PopularCafe);
