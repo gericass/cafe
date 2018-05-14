@@ -16,3 +16,7 @@ func LoginHandler(c echo.Context) error {
 func PopularCafeHandler(c echo.Context) error {
 	return nil
 }
+
+func RecentCafeHandler(c echo.Context) error {
+	return nil
+}

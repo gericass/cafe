@@ -50,6 +50,7 @@ func main() {
 	e.GET("/", handler.RootHandler)
 	e.POST("/login", handler.LoginHandler)
 	e.GET("/popular", handler.PopularCafeHandler)
+	e.GET("/recent", handler.RecentCafeHandler)
 
 	e.Use(dbMiddleware)
 	e.Use(middleware.Logger())
