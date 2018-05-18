@@ -1,6 +1,6 @@
 {
   "extends": [
-    "tslint-react"
+    "tslint"
   ],
   "linterOptions": {
     "exclude": [
